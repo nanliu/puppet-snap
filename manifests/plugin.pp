@@ -20,9 +20,9 @@ define snap::plugin (
   $plugin_path = "/opt/snap/plugins/${name}"
 
   archive { $plugin_path:
-    ensure   => present,
-    extract  => false,
-    source   => $plugin_url,
+    ensure  => present,
+    extract => false,
+    source  => $plugin_url,
   }
 
   file { $plugin_path:
@@ -33,9 +33,11 @@ define snap::plugin (
   if $refresh {
     Archive[$plugin_path] ~> Service['snap-telemetry']
   } else {
+    Service['snap-telemetry'] -> Archive[$plugin_path]
+
     exec { "/usr/local/bin/snapctl plugin load ${plugin_path}":
       refreshonly => true,
-      log_output  => on_failure,
+      logoutput   => on_failure,
       require     => Service['snap-telemetry'],
       subscribe   => Archive[$plugin_path],
     }

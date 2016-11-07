@@ -1,8 +1,8 @@
 class snap::install inherits ::snap::params {
   if $::snap::pkg_install {
-    if $::snap::pkg_repo == 'packagecloud.io' {
+    if $::snap::pkg_repo == 'packagecloud' {
       include ::snap::pkgcloud
-      Class[::snap::pkgcloud] -> Package[$::snap_pkg_name]
+      Class[::snap::pkgcloud] -> Package[$::snap::pkg_name]
     }
 
     package { $::snap::pkg_name:
