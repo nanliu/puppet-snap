@@ -8,6 +8,14 @@ class snap::install inherits ::snap::params {
     package { $::snap::pkg_name:
       ensure => $::snap::version,
     }
+
+    file { '/opt/snap/tasks':
+      ensure  => directory,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      require => Package[$::snap::pkg_name],
+    }
   }
   else {
     include ::snap::download
