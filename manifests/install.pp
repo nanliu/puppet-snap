@@ -19,16 +19,16 @@ class snap::install inherits ::snap::params {
   }
   else {
     include ::snap::download
-    Class[::snap::download] -> File['/usr/local/bin/snapd']
+    Class[::snap::download] -> File['/usr/local/sbin/snapteld']
   }
 
-  file { '/usr/local/bin/snapd':
+  file { '/usr/local/sbin/snapteld':
     ensure => symlink,
-    target => '/opt/snap/bin/snapd',
+    target => '/opt/snap/sbin/snapteld',
   }
 
-  file { '/usr/local/bin/snapctl':
+  file { '/usr/local/bin/snaptel':
     ensure => symlink,
-    target => '/opt/snap/bin/snapctl',
+    target => '/opt/snap/bin/snaptel',
   }
 }

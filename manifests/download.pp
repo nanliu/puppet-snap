@@ -28,24 +28,24 @@ class snap::download inherits snap::params {
     mode   => '0755',
   }
 
-  $snapd = '/opt/snap/bin/snapd'
-  $snapctl = '/opt/snap/bin/snapctl'
+  $snapteld = '/opt/snap/sbin/snapteld'
+  $snaptel = '/opt/snap/bin/snaptel'
 
-  archive { $snapd:
+  archive { $snapteld:
     ensure        => present,
-    source        => "${pkg_url}/snapd",
+    source        => "${pkg_url}/snapteld",
     checksum_type => 'none',
   }
 
-  archive { $snapctl:
+  archive { $snaptel:
     ensure        => present,
-    source        => "${pkg_url}/snapctl",
+    source        => "${pkg_url}/snaptel",
     checksum_type => 'none',
   }
 
-  file { [ $snapd, $snapctl ]:
+  file { [ $snapteld, $snaptel ]:
     mode    => '0755',
-    require => Archive[$snapd, $snapctl],
+    require => Archive[$snapteld, $snaptel],
   }
 
   file { $::snap::params::svc_file:

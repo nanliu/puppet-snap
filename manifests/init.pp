@@ -27,7 +27,7 @@
 # template: snap configuration file template
 #
 class snap (
-  $version        = 'latest',         # 0.17.0, installed, latest
+  $version        = 'latest',         # 1.0.0, installed, latest
   $pkg_install    = true,             # by default use package installation
   $pkg_repo       = 'packagecloud',   # custom, packagecloud
   $pkg_name       = 'snap-telemetry',

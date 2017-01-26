@@ -35,7 +35,7 @@ define snap::plugin (
   } else {
     Service['snap-telemetry'] -> Archive[$plugin_path]
 
-    exec { "/usr/local/bin/snapctl plugin load ${plugin_path}":
+    exec { "/usr/local/bin/snaptel plugin load ${plugin_path}":
       refreshonly => true,
       logoutput   => on_failure,
       require     => Service['snap-telemetry'],

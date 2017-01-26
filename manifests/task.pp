@@ -16,7 +16,7 @@ define snap::task (
     File[$task_path] ~> Service['snap-telemetry']
   } else {
     Service['snap-telemetry'] -> File[$task_path]
-    exec { "/usr/local/bin/snapctl task create -t ${task_path}":
+    exec { "/usr/local/bin/snaptel task create -t ${task_path}":
       refreshonly => true,
       logoutput   => on_failure,
       require     => Service['snap-telemetry'],
